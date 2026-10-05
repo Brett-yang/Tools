@@ -22,7 +22,7 @@
     }
 
     .container {
-      max-width: 720px;
+      max-width: 680px;
       width: 100%;
     }
 
@@ -62,42 +62,6 @@
       font-size: 0.95rem;
     }
 
-    /* 目标选择标签 */
-    .target-tabs {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem;
-      margin-bottom: 1.2rem;
-      background: #eef2ff;
-      padding: 0.4rem;
-      border-radius: 16px;
-    }
-
-    .target-tab {
-      padding: 0.7rem 0.5rem;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #5a6e82;
-      background: transparent;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-      user-select: none;
-    }
-
-    .target-tab:hover {
-      color: #1e4a7a;
-      background: rgba(255, 255, 255, 0.5);
-    }
-
-    .target-tab.active {
-      background: #ffffff;
-      color: #1e4a7a;
-      box-shadow: 0 4px 12px -2px rgba(30, 74, 122, 0.2);
-    }
-
     .card {
       background: #ffffff;
       border-radius: 24px;
@@ -107,28 +71,31 @@
       margin-bottom: 1.5rem;
     }
 
-    .form-group {
-      margin-bottom: 1.5rem;
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
     }
 
-    label.field-label {
-      display: block;
+    .row label {
+      flex: 0 0 80px;
       font-size: 0.9rem;
       font-weight: 600;
       color: #1e4a7a;
-      margin-bottom: 0.5rem;
     }
 
-    .hint {
-      font-size: 0.8rem;
-      color: #8a9aa8;
-      font-weight: 400;
-      margin-left: 0.5rem;
+    .input-wrap {
+      flex: 1;
+      min-width: 160px;
+      display: flex;
+      flex-direction: column;
     }
 
-    input[type="number"] {
+    .row input {
       width: 100%;
-      padding: 0.9rem 1.2rem;
+      padding: 0.85rem 1.1rem;
       font-size: 1rem;
       border: 2px solid #e2e8f0;
       border-radius: 14px;
@@ -138,62 +105,76 @@
       outline: none;
     }
 
-    input[type="number"]:focus {
+    .row input:focus {
       border-color: #1e4a7a;
       background: #ffffff;
       box-shadow: 0 0 0 4px rgba(30, 74, 122, 0.1);
     }
 
-    input[type="number"]:disabled {
-      background: #eef2ff;
+    .row input.calculated {
+      border-color: #16a34a;
+      background: #f0fdf4;
+      color: #166534;
+      font-weight: 600;
+      box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.12);
+    }
+
+    .field-hint {
+      font-size: 0.75rem;
       color: #8a9aa8;
-      cursor: not-allowed;
-      border-color: #dbe2ea;
+      margin-top: 0.3rem;
+      margin-left: 0.3rem;
     }
 
-    .btn-row {
-      display: flex;
-      gap: 0.8rem;
-      margin-top: 0.5rem;
+    .row .unit {
+      flex: 0 0 auto;
+      font-size: 0.9rem;
+      color: #5a6e82;
+      font-weight: 600;
+      padding: 0.5rem 0.7rem;
+      background: #f1f5f9;
+      border-radius: 8px;
     }
 
-    button.action-btn {
-      flex: 1;
-      padding: 0.95rem 1.5rem;
-      font-size: 1rem;
+    .row button {
+      flex: 0 0 auto;
+      padding: 0.85rem 1.2rem;
+      font-size: 0.9rem;
       font-weight: 600;
       border: none;
       border-radius: 14px;
       cursor: pointer;
       transition: all 0.2s;
-    }
-
-    .btn-primary {
-      background: #1e4a7a;
-      color: white;
-      box-shadow: 0 6px 16px -4px rgba(30, 74, 122, 0.4);
-    }
-
-    .btn-primary:hover {
-      background: #0f3660;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px -4px rgba(30, 74, 122, 0.5);
-    }
-
-    .btn-secondary {
       background: #eef2ff;
       color: #1e4a7a;
+      white-space: nowrap;
     }
 
-    .btn-secondary:hover {
-      background: #dde6f5;
+    .row button:hover {
+      background: #1e4a7a;
+      color: white;
+    }
+
+    .row button:active {
+      transform: scale(0.97);
+    }
+
+    .error-tip {
+      color: #d43f3f;
+      font-size: 0.88rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .error-tip.show {
+      display: block;
     }
 
     .result-card {
       background: linear-gradient(135deg, #0b2b5c, #1e4a7a);
       color: white;
       border-radius: 24px;
-      padding: 2rem;
+      padding: 1.8rem 2rem;
       box-shadow: 0 16px 32px -12px rgba(11, 43, 92, 0.4);
       display: none;
     }
@@ -208,34 +189,38 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .result-card h2 {
-      font-size: 1.1rem;
-      font-weight: 500;
-      opacity: 0.85;
-      margin-bottom: 1.2rem;
+    .result-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 40px;
+      margin-bottom: 1rem;
       letter-spacing: 0.02em;
     }
 
     .result-main {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
       letter-spacing: -0.02em;
     }
 
     .result-main .unit {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 500;
       opacity: 0.85;
       margin-left: 0.3rem;
     }
 
     .result-detail {
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       opacity: 0.85;
       line-height: 1.7;
-      margin-top: 1rem;
-      padding-top: 1rem;
+      margin-top: 0.8rem;
+      padding-top: 0.8rem;
       border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
 
@@ -244,15 +229,14 @@
       color: #a8c8f0;
     }
 
-    .error-tip {
-      color: #d43f3f;
-      font-size: 0.88rem;
-      margin-top: 0.5rem;
-      display: none;
-    }
-
-    .error-tip.show {
-      display: block;
+    .e96-recommend {
+      display: inline-block;
+      background: rgba(22, 163, 74, 0.25);
+      color: #bbf7d0;
+      font-weight: 700;
+      padding: 0.15rem 0.7rem;
+      border-radius: 8px;
+      margin-left: 0.3rem;
     }
 
     .e-series {
@@ -262,8 +246,9 @@
       border-radius: 14px;
       font-size: 0.85rem;
       color: #5a6e82;
-      line-height: 1.7;
+      line-height: 1.8;
       border-left: 4px solid #1e4a7a;
+      word-break: break-all;
     }
 
     .e-series strong {
@@ -276,12 +261,6 @@
       font-size: 0.85rem;
       color: #8a9aa8;
     }
-
-    @media (max-width: 500px) {
-      .target-tabs {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
   </style>
 </head>
 <body>
@@ -289,62 +268,77 @@
     <a href="../" class="back-link">← 返回工具集首页</a>
 
     <h1>DC 反馈电阻计算器</h1>
-    <p class="subtitle">输入 4 个参数中的任意 3 个，计算剩下的那个</p>
+    <p class="subtitle">填入任意 3 个参数，点旁边按钮计算第 4 个</p>
 
     <div class="card">
-      <!-- 目标选择标签 -->
-      <label class="field-label">我想计算：</label>
-      <div class="target-tabs" id="targetTabs">
-        <button type="button" class="target-tab" data-target="r1">R1（上电阻）</button>
-        <button type="button" class="target-tab active" data-target="r2">R2（下电阻）</button>
-        <button type="button" class="target-tab" data-target="vout">Vout（输出电压）</button>
-        <button type="button" class="target-tab" data-target="vref">Vref（基准电压）</button>
-      </div>
-
       <!-- Vref -->
-      <div class="form-group">
-        <label class="field-label">基准电压 Vref <span class="hint">（单位：V）</span></label>
-        <input type="number" id="vref" step="0.001" placeholder="例如 0.8" value="0.8">
+      <div class="row">
+        <label>Vref</label>
+        <div class="input-wrap">
+          <input type="number" id="vref" step="0.001" placeholder="基准电压" value="0.8">
+          <div class="field-hint">单位：V（例：0.8 = 0.8 V）</div>
+        </div>
+        <span class="unit">V</span>
+        <button onclick="calc('vref')">算 Vref</button>
       </div>
 
       <!-- Vout -->
-      <div class="form-group">
-        <label class="field-label">输出电压 Vout <span class="hint">（单位：V）</span></label>
-        <input type="number" id="vout" step="0.001" placeholder="例如 3.3" value="3.3">
+      <div class="row">
+        <label>Vout</label>
+        <div class="input-wrap">
+          <input type="number" id="vout" step="0.001" placeholder="输出电压" value="3.3">
+          <div class="field-hint">单位：V（例：3.3 = 3.3 V）</div>
+        </div>
+        <span class="unit">V</span>
+        <button onclick="calc('vout')">算 Vout</button>
       </div>
 
       <!-- R1 -->
-      <div class="form-group">
-        <label class="field-label">上电阻 R1 <span class="hint">（接 Vout 与 FB 之间，单位：Ω）</span></label>
-        <input type="number" id="r1" step="0.1" placeholder="例如 31250">
+      <div class="row">
+        <label>R1</label>
+        <div class="input-wrap">
+          <input type="number" id="r1" step="0.01" placeholder="上电阻" >
+          <div class="field-hint">单位：kΩ（例：10 = 10 kΩ）</div>
+        </div>
+        <span class="unit">kΩ</span>
+        <button onclick="calc('r1')">算 R1</button>
       </div>
 
       <!-- R2 -->
-      <div class="form-group">
-        <label class="field-label">下电阻 R2 <span class="hint">（接 FB 与 GND 之间，单位：Ω）</span></label>
-        <input type="number" id="r2" step="0.1" placeholder="例如 10000" value="10000" disabled>
+      <div class="row">
+        <label>R2</label>
+        <div class="input-wrap">
+          <input type="number" id="r2" step="0.01" placeholder="下电阻" value="10">
+          <div class="field-hint">单位：kΩ（例：10 = 10 kΩ）</div>
+        </div>
+        <span class="unit">kΩ</span>
+        <button onclick="calc('r2')">算 R2</button>
       </div>
 
       <div class="error-tip" id="errorTip"></div>
-
-      <div class="btn-row">
-        <button class="action-btn btn-primary" onclick="calculate()">计算</button>
-        <button class="action-btn btn-secondary" onclick="resetForm()">重置</button>
-      </div>
     </div>
 
     <div class="result-card" id="resultCard">
-      <h2 id="resultTitle">计算结果</h2>
+      <div class="result-badge" id="resultBadge">本次计算：—</div>
       <div class="result-main" id="resultMain">—</div>
       <div class="result-detail" id="resultDetail"></div>
     </div>
 
     <div class="e-series">
-      <strong>💡 常用电阻系列：</strong>
-      E24（±5%）：1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1
+      <strong>💡 常用电阻系列（E96 ±1%）：</strong>
+      1.00, 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24,
+      1.27, 1.30, 1.33, 1.37, 1.40, 1.43, 1.47, 1.50, 1.54, 1.58,
+      1.62, 1.65, 1.69, 1.74, 1.78, 1.82, 1.87, 1.91, 1.96, 2.00,
+      2.05, 2.10, 2.15, 2.21, 2.26, 2.32, 2.37, 2.43, 2.49, 2.55,
+      2.61, 2.67, 2.74, 2.80, 2.87, 2.94, 3.01, 3.09, 3.16, 3.24,
+      3.32, 3.40, 3.48, 3.57, 3.65, 3.74, 3.83, 3.92, 4.02, 4.12,
+      4.22, 4.32, 4.42, 4.53, 4.64, 4.75, 4.87, 4.99, 5.11, 5.23,
+      5.36, 5.49, 5.62, 5.76, 5.90, 6.04, 6.19, 6.34, 6.49, 6.65,
+      6.81, 6.98, 7.15, 7.32, 7.50, 7.68, 7.87, 8.06, 8.25, 8.45,
+      8.66, 8.87, 9.09, 9.31, 9.53, 9.76
       <br>
       <strong>💡 使用方法：</strong>
-      算出理论值后，从上面选一个最接近的标准电阻值即可。
+      算出理论值后，从上面选一个最接近的标准电阻值即可（乘 10ⁿ 得到各种阻值）。
     </div>
 
     <div class="footer-note">
@@ -353,168 +347,173 @@
   </div>
 
   <script>
-    // 当前要计算的目标
-    let target = 'r2';
+    // ========== E96（±1%）标准电阻基值 ==========
+    const E96_BASE = [
+      1.00, 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24,
+      1.27, 1.30, 1.33, 1.37, 1.40, 1.43, 1.47, 1.50, 1.54, 1.58,
+      1.62, 1.65, 1.69, 1.74, 1.78, 1.82, 1.87, 1.91, 1.96, 2.00,
+      2.05, 2.10, 2.15, 2.21, 2.26, 2.32, 2.37, 2.43, 2.49, 2.55,
+      2.61, 2.67, 2.74, 2.80, 2.87, 2.94, 3.01, 3.09, 3.16, 3.24,
+      3.32, 3.40, 3.48, 3.57, 3.65, 3.74, 3.83, 3.92, 4.02, 4.12,
+      4.22, 4.32, 4.42, 4.53, 4.64, 4.75, 4.87, 4.99, 5.11, 5.23,
+      5.36, 5.49, 5.62, 5.76, 5.90, 6.04, 6.19, 6.34, 6.49, 6.65,
+      6.81, 6.98, 7.15, 7.32, 7.50, 7.68, 7.87, 8.06, 8.25, 8.45,
+      8.66, 8.87, 9.09, 9.31, 9.53, 9.76
+    ];
 
-    // 所有输入字段
-    const fields = ['vref', 'vout', 'r1', 'r2'];
-
-    // 标签切换
-    const tabs = document.querySelectorAll('.target-tab');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        target = tab.dataset.target;
-        updateDisabled();
-        // 切换目标后隐藏旧结果
-        document.getElementById('resultCard').classList.remove('show');
-        document.getElementById('errorTip').classList.remove('show');
-      });
-    });
-
-    // 禁用"要计算的那个"输入框
-    function updateDisabled() {
-      fields.forEach(f => {
-        const input = document.getElementById(f);
-        if (f === target) {
-          input.disabled = true;
-          input.value = '';           // 清空，避免误导
-          input.placeholder = '待计算 →';
-        } else {
-          input.disabled = false;
-          // 恢复默认占位
-          const placeholders = {
-            vref: '例如 0.8',
-            vout: '例如 3.3',
-            r1: '例如 31250',
-            r2: '例如 10000'
-          };
-          input.placeholder = placeholders[f];
+    // 给定目标阻值(kΩ)，返回最接近的 E96 标准值(kΩ)
+    function nearestE96(valueInK) {
+      if (valueInK <= 0) return null;
+      const exp = Math.floor(Math.log10(valueInK));
+      const candidates = [];
+      for (let e = exp - 1; e <= exp + 1; e++) {
+        const scale = Math.pow(10, e);
+        for (const base of E96_BASE) {
+          candidates.push(base * scale);
         }
-      });
+      }
+      let best = candidates[0];
+      let bestDiff = Math.abs(candidates[0] - valueInK);
+      for (const c of candidates) {
+        const diff = Math.abs(c - valueInK);
+        if (diff < bestDiff) {
+          bestDiff = diff;
+          best = c;
+        }
+      }
+      return best;
     }
 
-    function calculate() {
+    // 格式化 kΩ 显示
+    function formatK(val) {
+      if (val >= 1000) return (val / 1000).toFixed(3) + ' MΩ';
+      if (val >= 1) return val.toFixed(3) + ' kΩ';
+      return (val * 1000).toFixed(2) + ' Ω';
+    }
+
+    // ========== 分压公式（内部统一用 Ω 计算，输入输出用 kΩ） ==========
+    // Vout = Vref × (1 + R1/R2)
+    // 注意：R1、R2 输入单位是 kΩ，但比例 R1/R2 不受单位影响，可直接用 kΩ 值
+
+    const ids = ['vref', 'vout', 'r1', 'r2'];
+    const units = { vref: 'V', vout: 'V', r1: 'kΩ', r2: 'kΩ' };
+    const labels = {
+      vref: 'Vref（基准电压）',
+      vout: 'Vout（输出电压）',
+      r1: 'R1（上电阻）',
+      r2: 'R2（下电阻）'
+    };
+
+    function getVal(id) {
+      const v = parseFloat(document.getElementById(id).value);
+      return isNaN(v) ? null : v;
+    }
+
+    function clearCalculatedHighlight() {
+      ids.forEach(id => document.getElementById(id).classList.remove('calculated'));
+    }
+
+    function calc(target) {
       const errorTip = document.getElementById('errorTip');
       const resultCard = document.getElementById('resultCard');
-      const resultTitle = document.getElementById('resultTitle');
-      const resultMain = document.getElementById('resultMain');
-      const resultDetail = document.getElementById('resultDetail');
 
       errorTip.classList.remove('show');
-      resultCard.classList.remove('show');
+      clearCalculatedHighlight();
 
-      // 收集输入
+      // 收集除了 target 之外的三个值
       const vals = {};
-      for (const f of fields) {
-        if (f === target) continue;
-        const v = parseFloat(document.getElementById(f).value);
-        if (isNaN(v) || v <= 0) {
-          errorTip.textContent = `请填写有效的 ${f.toUpperCase()}（正数）`;
+      for (const id of ids) {
+        if (id === target) continue;
+        const v = getVal(id);
+        if (v === null || v <= 0) {
+          errorTip.textContent = `请填写有效的 ${labels[id]}（正数）`;
           errorTip.classList.add('show');
+          resultCard.classList.remove('show');
           return;
         }
-        vals[f] = v;
+        vals[id] = v;
       }
 
-      let result, unit, formula, title;
+      let result, formula;
 
-      // 分压公式：Vout = Vref × (1 + R1/R2)
       if (target === 'r1') {
-        // 已知 Vref, Vout, R2 → 算 R1
-        // R1 = R2 × (Vout/Vref - 1)
         if (vals.vout <= vals.vref) {
-          errorTip.textContent = 'Vout 必须大于 Vref，否则无法计算';
+          errorTip.textContent = 'Vout 必须大于 Vref，否则 R1 无解';
           errorTip.classList.add('show');
+          resultCard.classList.remove('show');
           return;
         }
+        // R1(kΩ) = R2(kΩ) × (Vout/Vref − 1)
         result = vals.r2 * (vals.vout / vals.vref - 1);
-        unit = 'Ω';
-        title = '上电阻 R1';
-        formula = `R1 = R2 × (Vout/Vref − 1) = ${vals.r2} × (${vals.vout}/${vals.vref} − 1)`;
+        formula = `R1 = R2 × (Vout/Vref − 1) = ${vals.r2} kΩ × (${vals.vout}/${vals.vref} − 1)`;
       }
       else if (target === 'r2') {
-        // 已知 Vref, Vout, R1 → 算 R2
-        // R2 = R1 / (Vout/Vref - 1)
         if (vals.vout <= vals.vref) {
-          errorTip.textContent = 'Vout 必须大于 Vref，否则无法计算';
+          errorTip.textContent = 'Vout 必须大于 Vref，否则 R2 无解';
           errorTip.classList.add('show');
+          resultCard.classList.remove('show');
           return;
         }
+        // R2(kΩ) = R1(kΩ) / (Vout/Vref − 1)
         result = vals.r1 / (vals.vout / vals.vref - 1);
-        unit = 'Ω';
-        title = '下电阻 R2';
-        formula = `R2 = R1 ÷ (Vout/Vref − 1) = ${vals.r1} ÷ (${vals.vout}/${vals.vref} − 1)`;
+        formula = `R2 = R1 ÷ (Vout/Vref − 1) = ${vals.r1} kΩ ÷ (${vals.vout}/${vals.vref} − 1)`;
       }
       else if (target === 'vout') {
-        // 已知 Vref, R1, R2 → 算 Vout
-        // Vout = Vref × (1 + R1/R2)
         result = vals.vref * (1 + vals.r1 / vals.r2);
-        unit = 'V';
-        title = '输出电压 Vout';
         formula = `Vout = Vref × (1 + R1/R2) = ${vals.vref} × (1 + ${vals.r1}/${vals.r2})`;
       }
       else if (target === 'vref') {
-        // 已知 Vout, R1, R2 → 算 Vref
-        // Vref = Vout / (1 + R1/R2)
         result = vals.vout / (1 + vals.r1 / vals.r2);
-        unit = 'V';
-        title = '基准电压 Vref';
         formula = `Vref = Vout ÷ (1 + R1/R2) = ${vals.vout} ÷ (1 + ${vals.r1}/${vals.r2})`;
       }
 
-      // 格式化
+      // 显示主结果
       let displayNum, displayUnit;
-      if (unit === 'Ω') {
-        if (result >= 1e6) { displayNum = (result / 1e6).toFixed(3); displayUnit = 'MΩ'; }
-        else if (result >= 1e3) { displayNum = (result / 1e3).toFixed(3); displayUnit = 'kΩ'; }
-        else { displayNum = result.toFixed(2); displayUnit = 'Ω'; }
+      if (target === 'r1' || target === 'r2') {
+        // 电阻：kΩ 值 → 显示 kΩ（若超过 1000 显示 MΩ）
+        if (result >= 1000) {
+          displayNum = (result / 1000).toFixed(3);
+          displayUnit = 'MΩ';
+        } else {
+          displayNum = result.toFixed(3);
+          displayUnit = 'kΩ';
+        }
       } else {
         displayNum = result.toFixed(4);
         displayUnit = 'V';
       }
 
-      resultTitle.textContent = '计算结果 · ' + title;
-      resultMain.innerHTML = `${displayNum}<span class="unit">${displayUnit}</span>`;
+      // 回填输入框（电阻用 kΩ）
+      document.getElementById(target).value = result.toFixed(4);
+      document.getElementById(target).classList.add('calculated');
 
-      // 详细过程
-      let detailHtml = `<div>理论计算值：<span>${result.toFixed(4)} ${unit}</span></div>`;
-      detailHtml += `<div style="margin-top:0.6rem; opacity:0.75; font-size:0.85rem;">公式：${formula}</div>`;
-      if (unit === 'Ω') {
-        detailHtml += `<div style="margin-top:0.6rem; opacity:0.75; font-size:0.85rem;">提示：从 E24 标准电阻系列中选最接近的即可。</div>`;
+      document.getElementById('resultBadge').textContent = '✅ 本次计算：' + labels[target];
+      document.getElementById('resultMain').innerHTML = `${displayNum}<span class="unit">${displayUnit}</span>`;
+
+      let detailHtml = `
+        <div>理论值：<span>${result.toFixed(4)} ${units[target]}</span></div>
+        <div style="margin-top:0.4rem;">已自动回填到 <span>${target.toUpperCase()}</span> 输入框（绿色高亮）</div>
+      `;
+
+      if (target === 'r1' || target === 'r2') {
+        const e96 = nearestE96(result);       // 单位 kΩ
+        const e96Str = formatK(e96);
+        detailHtml += `
+          <div style="margin-top:0.6rem;">
+            📌 最接近的 E96（±1%）标准值：
+            <span class="e96-recommend">${e96Str}</span>
+          </div>
+        `;
       }
-      resultDetail.innerHTML = detailHtml;
+
+      detailHtml += `
+        <div style="margin-top:0.5rem;">公式：${formula}</div>
+      `;
+
+      document.getElementById('resultDetail').innerHTML = detailHtml;
 
       resultCard.classList.add('show');
     }
-
-    function resetForm() {
-      // 恢复默认值
-      document.getElementById('vref').value = 0.8;
-      document.getElementById('vout').value = 3.3;
-      document.getElementById('r1').value = '';
-      document.getElementById('r2').value = 10000;
-
-      // 默认计算 R2
-      target = 'r2';
-      tabs.forEach(t => t.classList.remove('active'));
-      document.querySelector('.target-tab[data-target="r2"]').classList.add('active');
-      updateDisabled();
-
-      document.getElementById('resultCard').classList.remove('show');
-      document.getElementById('errorTip').classList.remove('show');
-    }
-
-    // 回车触发计算
-    document.querySelectorAll('input[type="number"]').forEach(input => {
-      input.addEventListener('keypress', e => {
-        if (e.key === 'Enter') calculate();
-      });
-    });
-
-    // 初始化
-    updateDisabled();
   </script>
 </body>
 </html>
