@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实用工具集</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    .app-container {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .header h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #0b2b5c, #1e4a7a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+
+    .header .badge {
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1e4a7a;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .tool-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 12px 30px -8px rgba(0, 20, 40, 0.08);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tool-card::after {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 90px;
+      height: 90px;
+      background: radial-gradient(circle, rgba(100, 150, 255, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 40px -12px rgba(0, 40, 80, 0.18);
+      border-color: #cbd5e1;
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      background: #eef2ff;
+      color: #1e4a7a;
+    }
+
+    .tool-card h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: #0a1e32;
+      letter-spacing: -0.01em;
+    }
+
+    .tool-card p {
+      font-size: 0.95rem;
+      color: #4a5c6e;
+      line-height: 1.5;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+      border-top: 1px solid #e9eef3;
+      padding-top: 1rem;
+      font-size: 0.9rem;
+      color: #1e4a7a;
+      font-weight: 500;
+    }
+
+    .card-footer .arrow {
+      transition: transform 0.2s ease;
+      font-size: 1.2rem;
+    }
+
+    .tool-card:hover .card-footer .arrow {
+      transform: translateX(4px);
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #8a9aa8;
+      border-top: 1px solid #dbe2ea;
+      padding-top: 1.5rem;
+    }
+
+    .footer-note strong {
+      color: #1e4a7a;
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.5rem 1rem; }
+      .header h1 { font-size: 1.8rem; }
+      .summary-grid { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <div class="header">
+      <h1>⚙️ 实用工具集</h1>
+      <span class="badge">📌 点击卡片进入工具</span>
+    </div>
+
+    <div class="summary-grid">
+      <!-- DC 反馈电阻计算器 -->
+      <a href="./dc-resistor/" class="tool-card">
+        <div class="card-icon">⚡</div>
+        <h3>DC 反馈电阻计算</h3>
+        <p>根据基准电压与目标输出电压，快速计算反馈电阻分压比及阻值。</p>
+        <div class="card-footer">
+          <span>进入工具</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 预留位置，以后新增工具直接复制上面的卡片 -->
+      <div class="tool-card" style="cursor: default; opacity: 0.7;">
+        <div class="card-icon">➕</div>
+        <h3>更多工具 · 持续更新</h3>
+        <p>后续会陆续加入晶振匹配电容计算、Excel 公式助手、OrCAD 脚本说明等。</p>
+        <div class="card-footer" style="border-top-color: #d0ddeb;">
+          <span>敬请期待</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <p><strong>实现思路</strong> · 每个工具独立开发，通过卡片链接跳转 · 可持续新增</p>
+    </div>
+  </div>
+</body>
+</html>
